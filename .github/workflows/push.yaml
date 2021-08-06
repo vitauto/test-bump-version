@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: |
-          sed -i 's/1.0.0/1.0.$GITHUB_RUN_NUMBER/' package.json
+          sed -i 's/1.0.0/1.0.'$GITHUB_RUN_NUMBER'/' package.json
           cat package.json
       # - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
       #   with:
