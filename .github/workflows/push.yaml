@@ -2,16 +2,19 @@ name: Deploy
 
 on:
   push:
-    branches:
-      - master
+    # branches:
+      # - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
-        with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "test-bump-version" #Must be unique in Heroku
-          heroku_email: "vitaly@hi.auto"
+      - run: |
+          sed 's/1.0.0/1.0.$GITHUB_RUN_NUMBER/' package.json
+          cat package.json
+      # - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+      #   with:
+      #     heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+      #     heroku_app_name: "test-bump-version" #Must be unique in Heroku
+      #     heroku_email: ${{secrets.EMAIL}}
