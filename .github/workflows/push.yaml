@@ -12,19 +12,21 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v2
       - name: Heroku login credentials
-        run: |
-          cat > ~/.netrc <<EOF
-            machine api.heroku.com
-              login $HEROKU_EMAIL
-              password $HEROKU_API_KEY
-            machine git.heroku.com
-              login $HEROKU_EMAIL
-              password $HEROKU_API_KEY
-          EOF
-          echo heroku config:get VERSION
+        # run: |
+        #   cat > ~/.netrc <<EOF
+        #     machine api.heroku.com
+        #       login $HEROKU_EMAIL
+        #       password $HEROKU_API_KEY
+        #     machine git.heroku.com
+        #       login $HEROKU_EMAIL
+        #       password $HEROKU_API_KEY
+        #   EOF
+        #   echo heroku config:get VERSION
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
           HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
+        run: heroku container:login
+      
           # sed -i 's/1.0.0/1.0.'$GITHUB_RUN_NUMBER'/' package.json
           # cat package.json
       # - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
