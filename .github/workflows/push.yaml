@@ -26,7 +26,6 @@ jobs:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
           HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
         run: heroku container:login
-      
           # sed -i 's/1.0.0/1.0.'$GITHUB_RUN_NUMBER'/' package.json
           # cat package.json
       # - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
