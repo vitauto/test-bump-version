@@ -33,7 +33,6 @@ jobs:
 
         # sed -i 's/1.0.0/1.0.'$GITHUB_RUN_NUMBER'/' package.json
         # cat package.json
-
       - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
@@ -42,8 +41,7 @@ jobs:
           # justlogin: true
       # - run: heroku auth:login
       # - run: heroku auth:whoami
-        env:
-          VERSION: 2.0.0
+        env: heroku git:remote -a test-bump-version
 
 
     
