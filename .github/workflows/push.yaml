@@ -28,7 +28,7 @@ jobs:
           # HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
         run: | 
           heroku auth:login
-          heroku --app=${{ secrets.HEROKU_APP_NAME }} config:get VERSION 
+          heroku  config:get VERSION --app=${{ secrets.HEROKU_APP_NAME }} 
         # sed -i 's/1.0.0/1.0.'$GITHUB_RUN_NUMBER'/' package.json
         # cat package.json
       # - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
