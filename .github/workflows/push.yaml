@@ -41,7 +41,10 @@ jobs:
           # justlogin: true
       # - run: heroku auth:login
       # - run: heroku auth:whoami
-        env: heroku git:remote -a test-bump-version
+        env:
+          VERSION: 2.0.0
+      - run: heroku git:remote -a test-bump-version
+ 
 
 
     
