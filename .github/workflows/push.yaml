@@ -40,6 +40,6 @@ jobs:
           heroku_app_name: "test-bump-version" #Must be unique in Heroku
           heroku_email: ${{secrets.EMAIL}}
           justlogin: true
-      - name: 
-        run: heroku congif:get VERSION --app={{secrets.HEROKU_APP_NAME}}
+      - run: heroku auth:whoami
+
     
