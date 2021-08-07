@@ -11,7 +11,7 @@ jobs:
     steps: 
       - name: Check out repository
         uses: actions/checkout@v2
-      - name: Heroku login credentials
+      # - name: Heroku login credentials
         # run: |
         #   cat > ~/.netrc <<EOF
         #     machine api.heroku.com
@@ -22,17 +22,24 @@ jobs:
         #       password $HEROKU_API_KEY
         #   EOF
         #   echo heroku config:get VERSION
-        env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-          HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
-          # HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
-        run: heroku auth:login
-      - name: Get config version
-        run: heroku config:get VERSION --app=test-bump-version web 
+
+      #   env:
+      #     HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      #     HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
+      #     # HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
+      #   run: heroku auth:login
+      # - name: Get config version
+      #   run: heroku config:get VERSION --app=test-bump-version web 
+
         # sed -i 's/1.0.0/1.0.'$GITHUB_RUN_NUMBER'/' package.json
         # cat package.json
-      # - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
-      #   with:
-      #     heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-      #     heroku_app_name: "test-bump-version" #Must be unique in Heroku
-      #     heroku_email: ${{secrets.EMAIL}}
+
+      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "test-bump-version" #Must be unique in Heroku
+          heroku_email: ${{secrets.EMAIL}}
+          justlogin: true
+      - name: 
+        run: heroku congif:get VERSION --app={{secrets.HEROKU_APP_NAME}}
+    
