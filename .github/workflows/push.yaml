@@ -10,9 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: |
-          sed -i 's/1.0.0/1.0.'$GITHUB_RUN_NUMBER'/' package.json
-          cat package.json
+      - name: Login to Heroku Container registry
+        env: 
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: heroku container:login 
+          # sed -i 's/1.0.0/1.0.'$GITHUB_RUN_NUMBER'/' package.json
+          # cat package.json
       # - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
       #   with:
       #     heroku_api_key: ${{secrets.HEROKU_API_KEY}}
