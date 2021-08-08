@@ -17,7 +17,7 @@ jobs:
         # run: echo '::set-env name=API_VERSION::${{ github.ref }}'
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        run: heroku login
+        run: heroku login -i
       - name: Get auth token 
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
