@@ -28,9 +28,9 @@ jobs:
         #     -H "Accept: application/vnd.heroku+json; version=3"
         # run: heroku config:set VERSION=${VERSION##*/} -a ${{ secrets.HEROKU_APP_NAME }}
         # run: echo "VERSION=2.0.0" >> $GITHUB_ENV
-        run: heroku config:set VERSION=${{ github.ref }} -a test-bump-version
-        env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: heroku HEROKU_API_KEY=${{ secrets.HEROKU_API_KEY }} config:set VERSION=${{ github.ref }} -a test-bump-version
+        # env:
+        #   HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       # env:
       #   HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       #   HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
