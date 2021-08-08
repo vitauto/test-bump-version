@@ -20,6 +20,7 @@ jobs:
         # run: heroku auth:login
       - name: Get auth token 
         run: |
+          echo ${{secrets.HEROKU_API_KEY}}
           curl -n https://api.heroku.com/apps/test-bump-version/config-vars \
             -H Authorization: *** ${{secrets.HEROKU_API_KEY}} \
             -H "Accept: application/vnd.heroku+json; version=3"
