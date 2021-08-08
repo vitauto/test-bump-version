@@ -12,7 +12,8 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v2
       - name: Trim tag name
-        run: echo '::set-env name=API_VERSION::${{ github.ref }}'
+        # run: echo '::set-env name=API_VERSION::${{ github.ref }}'
+        run: heroku auth:token
       - name: Update API_VERSION on Heroku
         run: heroku config:set API_VERSION=${VERSION##*/} -a ${{ secrets.HEROKU_APP_NAME }}
         env:
