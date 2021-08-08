@@ -12,7 +12,7 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v2
       - run: echo ${{github.ref}}
-      - run: cat ~/.netrc
+      # - run: cat ~/.netrc
       - name: Trim tag name
         # run: echo '::set-env name=API_VERSION::${{ github.ref }}'
         env:
