@@ -22,7 +22,7 @@ jobs:
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
           HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
-        run: heroku config:get VERSION -a $HEROKU_APP_NAME
+        run: heroku config:get VERSION -a ${{$HEROKU_APP_NAME}}
 
       # - name: Update API_VERSION on Heroku
         # run: heroku config:set API_VERSION=${VERSION##*/} -a ${{ secrets.HEROKU_APP_NAME }}
