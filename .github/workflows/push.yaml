@@ -18,15 +18,18 @@ jobs:
         # env:
         #   HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         # run: heroku auth:login
-      - name: Trim tag name
-        run: echo '::set-env name=API_VERSION::${{ github.ref }}'
+      # - name: Trim tag name
+        # run: echo '::set-env name=API_VERSION::${{ github.ref }}'
       - name: Get auth token 
         # run: |
         #   echo "${{secrets.HEROKU_API_KEY}}"
         #   curl -n https://api.heroku.com/apps/test-bump-version/config-vars \
         #     -H Authorization: *** ${{secrets.HEROKU_API_KEY}} \
         #     -H "Accept: application/vnd.heroku+json; version=3"
-        run: heroku config:set VERSION=${VERSION##*/} -a ${{ secrets.HEROKU_APP_NAME }}
+        # run: heroku config:set VERSION=${VERSION##*/} -a ${{ secrets.HEROKU_APP_NAME }}
+        # run: echo "VERSION=2.0.0" >> $GITHUB_ENV
+        run: heroku config:set VERSION=${{ github.ref }} -a ${{ secrets.HEROKU_APP_NAME }}
+
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       # env:
