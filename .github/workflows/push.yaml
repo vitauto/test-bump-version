@@ -19,11 +19,12 @@ jobs:
       - name: Get auth token 
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        run: heroku auth:token
+        run: heroku auth:token -a
       # - name: Update API_VERSION on Heroku
         # run: heroku config:set API_VERSION=${VERSION##*/} -a ${{ secrets.HEROKU_APP_NAME }}
 
       - run: echo ${{github.ref}}
+      - run: cat ~/.netrc
         # run: |
         #   cat > ~/.netrc <<EOF
         #     machine api.heroku.com
