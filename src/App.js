@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
@@ -5,6 +6,10 @@ function App() {
 
   console.log('Frontend version : ', process.env.REACT_APP_VERSION);
   console.log('node env : ', process.env.NODE_ENV);
+
+  useEffect(() => {
+    console.log(process.env.REACT_APP_VERSION);
+  }, [process.env.REACT_APP_VERSION]);
 
   return (
     <div className="App">
