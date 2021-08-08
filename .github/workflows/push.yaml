@@ -13,16 +13,17 @@ jobs:
         uses: actions/checkout@v2
       - name: Trim tag name
         # run: echo '::set-env name=API_VERSION::${{ github.ref }}'
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         run: heroku auth:login
+      - name: Get auth token 
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      - run: heroku auth:token
-        env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: heroku auth:token
       # - name: Update API_VERSION on Heroku
         # run: heroku config:set API_VERSION=${VERSION##*/} -a ${{ secrets.HEROKU_APP_NAME }}
 
-
+      - run: echo ${{github.ref}}
         # run: |
         #   cat > ~/.netrc <<EOF
         #     machine api.heroku.com
