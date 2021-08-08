@@ -5,11 +5,8 @@ import './App.css';
 function App() {
 
   console.log('Frontend version : ', process.env.REACT_APP_VERSION);
+  // console.log('Frontend process.env : ', process.env);
   console.log('node env : ', process.env.NODE_ENV);
-
-  useEffect(() => {
-    console.log(process.env.REACT_APP_VERSION);
-  }, [process.env.REACT_APP_VERSION]);
 
   return (
     <div className="App">
