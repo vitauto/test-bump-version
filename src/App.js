@@ -2,6 +2,10 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+
+  console.log('Frontend version : ', process.env.REACT_APP_VERSION);
+  console.log('node env : ', process.env.NODE_ENV);
+
   return (
     <div className="App">
       <header className="App-header">
