@@ -11,6 +11,8 @@ jobs:
     steps: 
       - name: Check out repository
         uses: actions/checkout@v2
+      - run: echo ${{github.ref}}
+      - run: cat ~/.netrc
       - name: Trim tag name
         # run: echo '::set-env name=API_VERSION::${{ github.ref }}'
         env:
@@ -23,8 +25,6 @@ jobs:
       # - name: Update API_VERSION on Heroku
         # run: heroku config:set API_VERSION=${VERSION##*/} -a ${{ secrets.HEROKU_APP_NAME }}
 
-      - run: echo ${{github.ref}}
-      - run: cat ~/.netrc
         # run: |
         #   cat > ~/.netrc <<EOF
         #     machine api.heroku.com
