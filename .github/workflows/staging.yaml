@@ -17,7 +17,6 @@ jobs:
         run: | 
           declare -r VERS=$(git rev-list --count HEAD)
           echo ${{ github.ref == 'refs/heads/staging' && '0.9.' || '1.0.' }}$VERS
-          echo ${{ env }}
       # - name: Push staging
       #   if: ${{github.ref == 'refs/heads/staging'}}
       #   run: echo ${{ 'staging' }}
@@ -32,7 +31,7 @@ jobs:
       - name: Bump app version
         run: | 
           declare -r APP_VERSION=0.9.$(git rev-list --count HEAD)
-          heroku config:set REACT_APP_VERSION=$APP_VERSION -a ${{ secrets.HEROKU_APP_NAME }} 
+          heroku config:set REACT_APP_VERSION=${{ github.ref == 'refs/heads/staging' && '0.9.' || '1.0.' }}$APP_VERSION -a ${{ secrets.HEROKU_APP_NAME }} 
           git tag $APP_VERSION
           git push -f --tags
         env:
