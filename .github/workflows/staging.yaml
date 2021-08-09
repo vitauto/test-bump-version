@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Resolve branch
         run: | 
-          echo ${{ github.ref == 'refs/heads/staging' && staging || main }}
+          echo ${{ github.ref == 'refs/heads/staging' && 'staging' || 'main' }}
           echo ${{ env }}
       # - name: Push staging
       #   if: ${{github.ref == 'refs/heads/staging'}}
