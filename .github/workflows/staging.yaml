@@ -9,12 +9,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - run: | 
+      - name: Resolve branch
+        run: | 
           echo ${{ github.ref }}
-      - if: ${{github.ref == 'refs/heads/staging'}}
-      - run: echo ${{ 'staging' }}
-      - if: ${{github.ref == 'refs/heads/staging'}}
-      - run: echo ${{ 'main' }} 
+        if: ${{github.ref == 'refs/heads/staging'}}
+        run: echo ${{ 'staging' }}
+        if: ${{github.ref == 'refs/heads/staging'}}
+        run: echo ${{ 'main' }} 
  
       # - name: Check out repository
       #   uses: actions/checkout@v2
