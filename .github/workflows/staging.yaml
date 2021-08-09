@@ -11,13 +11,15 @@ jobs:
     steps:
       - name: Resolve branch
         run: | 
-          echo ${{ github.ref }}
-      - name: Push staging
-        if: ${{github.ref == 'refs/heads/staging'}}
-        run: echo ${{ 'staging' }}
-      - name: Push main
-        if: ${{github.ref == 'refs/heads/main'}}
-        run: echo ${{ 'main' }} 
+          echo ${{ github.ref =='refs/heads/staging' && 'staging || main }}
+          echo ${{ env }}
+          echo  ${{ github.ref ==  }}
+      # - name: Push staging
+      #   if: ${{github.ref == 'refs/heads/staging'}}
+      #   run: echo ${{ 'staging' }}
+      # - name: Push main
+      #   if: ${{github.ref == 'refs/heads/main'}}
+      #   run: echo ${{ 'main' }} 
  
       # - name: Check out repository
       #   uses: actions/checkout@v2
