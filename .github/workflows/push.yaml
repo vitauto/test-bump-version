@@ -15,7 +15,7 @@ jobs:
           fetch-depth: 0
       - name: Bump app version
         run: | 
-          declare -r APP_VERSION = 0.9.$(git rev-list --count HEAD)
+          declare -r APP_VERSION=0.9.$(git rev-list --count HEAD)
           heroku config:set REACT_APP_VERSION=$APP_VERSION -a test-bump-version
           git tag $APP_VERSION
           git push -f --tags
