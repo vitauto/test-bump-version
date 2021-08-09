@@ -1,9 +1,9 @@
-name: Deploy
+name: Push main
 
 on:
   push:
     branches:
-      - staging
+      - main
 
 jobs:
   build:
@@ -15,14 +15,12 @@ jobs:
           fetch-depth: 0
       - name: Bump app version
         run: | 
-          declare -r APP_VERSION=0.9.$(git rev-list --count HEAD)
-          heroku config:set REACT_APP_VERSION=$APP_VERSION -a test-bump-version
+          declare -r APP_VERSION=0.0.$(git rev-list --count HEAD)
+          heroku config:set REACT_APP_VERSION=$APP_VERSION -a ${{ secrets.HEROKU_APP_NAME }}
           git tag $APP_VERSION
           git push -f --tags
         env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      # - name:  Deploy
- 
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }} 
 
 
     
