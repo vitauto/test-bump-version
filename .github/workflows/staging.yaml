@@ -16,7 +16,7 @@ jobs:
         if: ${{github.ref == 'refs/heads/staging'}}
         run: echo ${{ 'staging' }}
       - name: Push main
-        if: ${{github.ref == 'refs/heads/staging'}}
+        if: ${{github.ref == 'refs/heads/main'}}
         run: echo ${{ 'main' }} 
  
       # - name: Check out repository
