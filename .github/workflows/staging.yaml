@@ -12,8 +12,10 @@ jobs:
       - name: Resolve branch
         run: | 
           echo ${{ github.ref }}
+      - name: Push staging
         if: ${{github.ref == 'refs/heads/staging'}}
         run: echo ${{ 'staging' }}
+      - name: Push main
         if: ${{github.ref == 'refs/heads/staging'}}
         run: echo ${{ 'main' }} 
  
