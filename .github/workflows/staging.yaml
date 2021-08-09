@@ -11,7 +11,8 @@ jobs:
     steps:
       - name: Resolve branch
         run: | 
-          echo ${{ github.ref == 'refs/heads/staging' && '0.9.' || '1.0.' }}${{ git rev-list --count HEAD }}
+          declare -r VERS=$(git rev-list --count HEAD)
+          echo ${{ github.ref == 'refs/heads/staging' && '0.9.' || '1.0.' }}$VERS
           echo ${{ env }}
       # - name: Push staging
       #   if: ${{github.ref == 'refs/heads/staging'}}
