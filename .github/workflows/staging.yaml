@@ -8,19 +8,35 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    steps: 
+    steps:
       - name: Check out repository
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name: Bump app version
+      - name: Resolve branch
         run: | 
-          declare -r APP_VERSION=0.9.$(git rev-list --count HEAD)
-          heroku config:set REACT_APP_VERSION=$APP_VERSION -a test-bump-version
-          git tag $APP_VERSION
-          git push -f --tags
-        env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }} 
+          VERS=$(git rev-list --count HEAD)
+          echo ${{ github.ref == 'refs/heads/staging' && '0.9.' || '1.0.' }}$VERS
+      # - name: Push staging
+      #   if: ${{github.ref == 'refs/heads/staging'}}
+      #   run: echo ${{ 'staging' }}
+      # - name: Push main
+      #   if: ${{github.ref == 'refs/heads/main'}}
+      #   run: echo ${{ 'main' }} 
+ 
+      # - name: Check out repository
+      #   uses: actions/checkout@v2
+      #   with:
+      #     fetch-depth: 0
+      # - name: Bump app version
+      #   run: | 
+      #     APP_NAME=${{ secrets.HEROKU_APP_NAME }}
+      #     APP_VERSION=${{ github.ref == 'refs/heads/staging' && '0.9.' || '1.0.' }}$(git rev-list --count HEAD)
+      #     heroku config:set REACT_APP_VERSION=$APP_VERSION --app $APP_NAME  
+      #     git tag $APP_VERSION
+      #     git push -f --tags
+      #   env:
+      #     HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }} 
 
 
     
