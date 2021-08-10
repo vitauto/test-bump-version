@@ -28,15 +28,15 @@ jobs:
       #   uses: actions/checkout@v2
       #   with:
       #     fetch-depth: 0
-      - name: Bump app version
-        run: | 
-          APP_NAME=${{ secrets.HEROKU_APP_NAME }}
-          APP_VERSION=${{ github.ref == 'refs/heads/staging' && '0.9.' || '1.0.' }}$(git rev-list --count HEAD)
-          heroku config:set REACT_APP_VERSION=$APP_VERSION --app $APP_NAME  
-          git tag $APP_VERSION
-          git push -f --tags
-        env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }} 
+      # - name: Bump app version
+      #   run: | 
+      #     APP_NAME=${{ secrets.HEROKU_APP_NAME }}
+      #     APP_VERSION=${{ github.ref == 'refs/heads/staging' && '0.9.' || '1.0.' }}$(git rev-list --count HEAD)
+      #     heroku config:set REACT_APP_VERSION=$APP_VERSION --app $APP_NAME  
+      #     git tag $APP_VERSION
+      #     git push -f --tags
+      #   env:
+      #     HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }} 
 
 
     
